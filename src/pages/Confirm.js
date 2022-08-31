@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Confirm() {
   const auth = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [alarms, setAlarms] = useState([]);
   const navigate = useNavigate();
 
@@ -28,6 +28,7 @@ export default function Confirm() {
 
   const getData = async () => {
     // console.log(auth.id);
+    setIsLoading(true);
     const adminCollectionRef = collection(db, "Admin", auth.id, "Alarm");
     const q = query(adminCollectionRef, orderBy("createdAt", "desc"));
     const data = await getDocs(q);
@@ -49,12 +50,13 @@ export default function Confirm() {
       })
     );
     setAlarms(meetingData);
+    setIsLoading(false)
   };
 
   return (
     <div>
       관리자 인증 요청
-      {/* <button onClick={getData}>테스트데이터~</button> */}
+      <button onClick={getData()}>새로고침</button>
       <ul className="requests">
         {alarms.map((el, idx) => {
           return (

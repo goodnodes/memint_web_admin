@@ -65,7 +65,7 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      z-index: 100;
+      z-index: 10;
       border-radius: 2em;
       display: flex;
       flex-direction: column;
@@ -135,5 +135,6 @@
   left: 40%;
   color: gray;
   font-size: large;
-  z-index: 3;
+  z-index: 100;
+  font-weight: bold;
 }
