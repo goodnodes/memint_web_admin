@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Confirm() {
   const auth = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
   const [alarms, setAlarms] = useState([]);
   const navigate = useNavigate();
 
@@ -33,6 +34,10 @@ export default function Confirm() {
     const alarmData = data.docs.map((el) => {
       return { id: el.id, ...el.data() };
     });
+    if(alarmData.length === 0) {
+      setAlarms([]);
+      return;
+    }
     const meetingData = await Promise.all(
       alarmData.map(async (el) => {
         const meetingDocRef = doc(db, "Meeting", el.meetingId);
@@ -64,6 +69,7 @@ export default function Confirm() {
           );
         })}
       </ul>
+      <div className="loading">Loading...</div>
     </div>
   );
 }

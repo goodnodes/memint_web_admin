@@ -129,3 +129,11 @@
     }
   }
 }
+.loading {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  color: gray;
+  font-size: large;
+  z-index: 3;
+}
