@@ -20,7 +20,7 @@ export default function AlarmElement({
   alarm,
 
   getData,
-
+  setIsLoading,
 }) {
   const auth = useAuth();
 
@@ -40,6 +40,7 @@ export default function AlarmElement({
     setModal(!modal);
   };
   const handleConfirm = async () => {
+    setIsLoading(true);
     if (message.length === 0) {
       alert("메시지를 작성해주세요!");
       return;
@@ -66,13 +67,17 @@ export default function AlarmElement({
         meetingId: alarm.meetingId,
         createdAt: Timestamp.now(),
       });
-      notification({receiver: Object.keys(id)[0], message: '미팅 참여 보상을 받았습니다!'})
+      notification({
+        receiver: Object.keys(id)[0],
+        message: "미팅 참여 보상을 받았습니다!",
+      });
     }
 
     const alarmRef = doc(db, "Admin", auth.id, "Alarm", alarm.id);
     await updateDoc(alarmRef, {
       complete: true,
     });
+    setIsLoading(false);
     setModal(false);
     await getData();
   };
@@ -82,6 +87,7 @@ export default function AlarmElement({
       alert("메시지를 작성해주세요!");
       return;
     }
+    setIsLoading(true);
     //confirmStatus, confirmMessage
     const meetingRef = doc(db, "Meeting", el.meetingId);
 
@@ -94,6 +100,7 @@ export default function AlarmElement({
     await updateDoc(alarmRef, {
       complete: true,
     });
+    setIsLoading(false);
     setModal(false);
 
     await getData();

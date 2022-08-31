@@ -56,7 +56,7 @@ export default function Confirm() {
   return (
     <div>
       관리자 인증 요청
-      <button onClick={getData}>새로고침</button>
+      <button className="refreshbutton" onClick={getData}>새로고침</button>
       <ul className="requests">
         {alarms.map((el, idx) => {
           return (
@@ -67,6 +67,7 @@ export default function Confirm() {
               // handleConfirm={handleConfirm}
               // handleDeny={handleDeny}
               getData={getData}
+              setIsLoading={setIsLoading}
             />
           );
         })}
