@@ -35,7 +35,7 @@ export default function Confirm() {
     const alarmData = data.docs.map((el) => {
       return { id: el.id, ...el.data() };
     });
-    if(alarmData.length === 0) {
+    if (alarmData.length === 0) {
       setAlarms([]);
       return;
     }
@@ -50,13 +50,13 @@ export default function Confirm() {
       })
     );
     setAlarms(meetingData);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   return (
     <div>
       관리자 인증 요청
-      <button onClick={getData()}>새로고침</button>
+      <button onClick={getData}>새로고침</button>
       <ul className="requests">
         {alarms.map((el, idx) => {
           return (
@@ -71,7 +71,7 @@ export default function Confirm() {
           );
         })}
       </ul>
-      <div className="loading">Loading...</div>
+      {isLoading ? <div className="loading">Loading...</div> : null}
     </div>
   );
 }
