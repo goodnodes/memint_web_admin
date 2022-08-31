@@ -26,7 +26,7 @@ export default function Confirm() {
   }, []);
 
   const getData = async () => {
-    console.log(auth.id);
+    // console.log(auth.id);
     const adminCollectionRef = collection(db, "Admin", auth.id, "Alarm");
     const q = query(adminCollectionRef, orderBy("createdAt", "desc"));
     const data = await getDocs(q);
