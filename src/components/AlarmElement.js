@@ -70,6 +70,7 @@ export default function AlarmElement({
       notification({
         receiver: Object.keys(id)[0],
         message: "미팅 참여 보상을 받았습니다!",
+        title: "MEMINT",
       });
     }
 
