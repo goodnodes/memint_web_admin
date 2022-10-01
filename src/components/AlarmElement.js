@@ -25,10 +25,16 @@ export default function AlarmElement({
   const auth = useAuth();
 
   const [modal, setModal] = useState(false);
+  const [eventItem, setEventItem] = useState("");
   const [message, setMessage] = useState("");
   const handleInput = (e) => {
     setMessage(e.target.value);
   };
+
+  const onEventItemChange = (e) => {
+    setEventItem(e.target.value);
+  };
+
   const handleClick = () => {
     if (alarm.complete) {
       return;
@@ -44,6 +50,9 @@ export default function AlarmElement({
     if (message.length === 0) {
       alert("메시지를 작성해주세요!");
       return;
+    } else if (eventItem.length === 0) {
+      alert("이벤트 상품을 선택해주세요!");
+      return;
     }
 
     //confirmStatus, meetingStatus, confirmMessage
@@ -53,6 +62,8 @@ export default function AlarmElement({
       confirmStatus: "confirmed",
       status: "confirmed",
       confirmMessage: message,
+      isReadyToGetEvent: false,
+      eventItem: eventItem,
     });
 
     //user 토큰 보상 update 멤버 다 반복문
@@ -166,6 +177,41 @@ export default function AlarmElement({
               <div>
                 <div>
                   <textarea onChange={handleInput} placeholder="인증메시지" />
+                </div>
+                <div className="meetingInfoArea">
+                  <div className="title">이벤트 상품 선택</div>
+                  <input
+                    className="eventItem"
+                    type="radio"
+                    name="eventItem"
+                    value="꽝"
+                    id="꽝"
+                    checked={eventItem === "꽝"}
+                    onChange={onEventItemChange}
+                  />
+                  <label htmlFor="꽝">꽝</label>
+
+                  <input
+                    className="eventItem"
+                    type="radio"
+                    name="eventItem"
+                    value="소주 1병 증정"
+                    id="소주 1병 증정"
+                    checked={eventItem === "소주 1병 증정"}
+                    onChange={onEventItemChange}
+                  />
+                  <label htmlFor="소주 1병 증정">소주 1병 증정</label>
+
+                  <input
+                    className="eventItem"
+                    type="radio"
+                    name="eventItem"
+                    value="안주 1개 증정"
+                    id="안주 1개 증정"
+                    checked={eventItem === "안주 1개 증정"}
+                    onChange={onEventItemChange}
+                  />
+                  <label htmlFor="large">안주 1개 증정</label>
                 </div>
                 <div className="button-area">
                   <button
