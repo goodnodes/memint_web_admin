@@ -195,23 +195,12 @@ export default function AlarmElement({
                     className="eventItem"
                     type="radio"
                     name="eventItem"
-                    value="소주 1병 증정"
-                    id="소주 1병 증정"
-                    checked={eventItem === "소주 1병 증정"}
+                    value="미민크루"
+                    id="미민크루"
+                    checked={eventItem === "미민크루"}
                     onChange={onEventItemChange}
                   />
-                  <label htmlFor="소주 1병 증정">소주 1병 증정</label>
-
-                  <input
-                    className="eventItem"
-                    type="radio"
-                    name="eventItem"
-                    value="안주 1개 증정"
-                    id="안주 1개 증정"
-                    checked={eventItem === "안주 1개 증정"}
-                    onChange={onEventItemChange}
-                  />
-                  <label htmlFor="large">안주 1개 증정</label>
+                  <label htmlFor="소주 1병 증정">미민크루</label>
                 </div>
                 <div className="button-area">
                   <button
