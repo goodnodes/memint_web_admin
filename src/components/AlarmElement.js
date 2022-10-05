@@ -12,7 +12,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { createEarnOffTxLg } from "../lib/Admin";
+import { addExp, createEarnOffTxLg } from "../lib/Admin";
 import useAuth from "../utils/hooks/useAuth";
 import { notification } from "../lib/api/notification";
 
@@ -70,7 +70,7 @@ export default function AlarmElement({
     //user 보상 alarm add
 
     for (let id of alarm.meetingInfo.members) {
-      await createEarnOffTxLg(Object.keys(id)[0], 1, "미팅 참여");
+      await addExp(Object.keys(id)[0]);
       const userAlarmRef = collection(db, "User", Object.keys(id)[0], "Alarm");
       await addDoc(userAlarmRef, {
         type: "earned",
