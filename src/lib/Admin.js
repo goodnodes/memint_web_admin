@@ -21,7 +21,7 @@ export async function createEarnOffTxLg(userId, amount, txType) {
     balance: userData.data().tokenAmount,
   });
   await updateDoc(userRef, {
-    tokenAmount: userData.data().tokenAmount + amount,
+    tokenAmount: Math.round((userData.data().tokenAmount + amount) * 10) / 10,
   });
 }
 
