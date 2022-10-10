@@ -70,7 +70,7 @@ export default function AlarmElement({
     //user 보상 alarm add
 
     for (let id of alarm.meetingInfo.members) {
-      await addExp(Object.keys(id)[0]);
+      // await addExp(Object.keys(id)[0]);
       const userAlarmRef = collection(db, "User", Object.keys(id)[0], "Alarm");
       await addDoc(userAlarmRef, {
         type: "earned",
