@@ -80,7 +80,7 @@ export default function AlarmElement({
       });
       notification({
         receiver: Object.keys(id)[0],
-        message: "미팅 참여 보상을 받았습니다!",
+        message: "미팅 인증에 성공했습니다. 알림을 클릭해 보상을 받으세요!",
         title: "MEMINT",
       });
     }
